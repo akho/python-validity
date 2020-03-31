@@ -85,14 +85,45 @@ def capture(prg):
     if l != len(res):
         raise Exception('Response size does not match %d != %d', l, len(res))
 
-    x, y, w1, w2, error = unpack('<HHHHL', res)
+    #x, y, w1, w2, error = unpack('<HHHHL', res)
+    print(res)
+    print("Initial part")
+    print(res[:12])
+    x, y, w1, w2, error = unpack('<HHHHL', res[:12])
+    print(x,y,w1,w2,error)
 
     return error
 
 def append_new_image(key=0, prev=b''):
-    rsp=tls.app(pack('<BLL', 0x68, key, 0))
+    # acptable=[]
+    # for i in range(0, 255):
+    #     if i == 68:
+    #         print("SKIPPING",i)
+    #         continue
+    #     rsp=tls.app(pack('<BLL', i, key, 0))
+    #     print(i, rsp, "len", len(rsp))
+    #     try:
+    #         assert_status(rsp)
+    #     except:
+    #         continue
+
+    #     try:
+    #         new_key, = unpack('<L', rsp[2:6])
+    #         print('new keyyyy', new_key)
+    #         acptable.append(i)
+    #     except Exception as e:
+    #         print('Failing to extract bytes from',rsp[2:],len(rsp[2:]),e)
+    #         continue
+    acceptable = [1, 23, 25, 62, 100, 111, 117]
+    rsp=tls.app(pack('<BLL', 117, key, 0))
+
+    # print('acceptable')
+    # print(acptable)
+    # return
+    # rsp=tls.app(pack('<BLL', 111, key, 0))
+    print(rsp, 'but checking',rsp[2:6])
     assert_status(rsp)
-    new_key, = unpack('<L', rsp[2:])
+    new_key, = unpack('<L', rsp[2:6])
 
     usb.wait_int()
 

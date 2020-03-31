@@ -19,7 +19,7 @@ def upload_fwext():
     # ^ TODO -- what is the real reason to detect HW at this stage?
     #           just a guess: perhaps it is used to construct fwext filename
 
-    with open('6_07f_lenovo_mis.xpfwext', 'rb') as f:
+    with open('6_07f_Lenovo.xpfwext', 'rb') as f:
         fwext=f.read()
 
     fwext=fwext[fwext.index(b'\x1a')+1:]

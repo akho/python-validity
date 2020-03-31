@@ -26,7 +26,7 @@ import usb.core
 from usb.util import claim_interface, release_interface
 from time import sleep
 
-dev = usb.core.find(idVendor=0x138a, idProduct=0x0097)
+dev = usb.core.find(idVendor=0x138a, idProduct=0x0090)
 
 # make sure we at least opened device descriptor
 claim_interface(dev, 0)
@@ -37,4 +37,4 @@ sleep(0.2)
 release_interface(dev, 0)
 
 # sit here, until the user press enter
-raw_input()
+# raw_input()
