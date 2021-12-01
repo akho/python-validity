@@ -11,8 +11,8 @@ setup(
     author_email='',
     description='Validity fingerprint sensor prototype',
     install_requires=(
-        'fastecdsa==1.7.4',
-        'pyusb==1.0.2',
+        'fastecdsa',
+        'pyusb',
         'pycrypto'
     ),
     dependency_links=(
